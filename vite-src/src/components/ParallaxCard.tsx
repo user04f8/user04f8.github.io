@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+// ParallaxCard.tsx
+import React, { useEffect, useRef, useState } from "react";
 import "./ParallaxCard.css";
 
 interface ParallaxCardProps {
@@ -6,6 +7,7 @@ interface ParallaxCardProps {
   subheading: string;
   descriptor: string;
   backgroundImage: string;
+  link: string | undefined;
 }
 
 const ParallaxCard: React.FC<ParallaxCardProps> = ({
@@ -13,18 +15,24 @@ const ParallaxCard: React.FC<ParallaxCardProps> = ({
   subheading,
   descriptor,
   backgroundImage,
+  link
 }) => {
-  const [scrollAmount, setScrollAmount] = useState(0);
+  const [offsetY, setOffsetY] = useState(0);
+  const cardRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleScroll = () => {
-      // Calculate scroll position relative to the top of the viewport
-      const scrollPosition = window.scrollY;
-      setScrollAmount(scrollPosition * 0.5); // Adjust scroll rate
+      if (cardRef.current) {
+        const rect = cardRef.current.getBoundingClientRect();
+        const scrollPosition = window.pageYOffset;
+        const cardOffsetTop = rect.top + scrollPosition - 1000;
+        const parallaxSpeed = 0.2;
+        const yPos = -(scrollPosition - cardOffsetTop) * parallaxSpeed;
+        setOffsetY(yPos);
+      }
     };
 
     window.addEventListener("scroll", handleScroll);
-
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
@@ -33,11 +41,12 @@ const ParallaxCard: React.FC<ParallaxCardProps> = ({
   return (
     <div
       className="parallax-card"
+      ref={cardRef}
       style={{
         backgroundImage: `url(${backgroundImage})`,
-        // Cast as any to allow CSS custom properties in inline styles
-        "--scroll-amount": `${scrollAmount}px`,
-      } as React.CSSProperties} /* <-- Important fix here */
+        backgroundPositionY: `${offsetY}px`,
+      }}
+      onClick={() => link === undefined ? {} : open(link)}
     >
       <div className="card-content">
         <h2 className="card-title">{title}</h2>

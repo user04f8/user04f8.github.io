@@ -1,11 +1,13 @@
-/* App.css */
+
 #root {
-  /* Remove padding and text-align */
   max-width: 1280px;
   margin: 0 auto;
 }
 
 .main-content {
+  max-width: 1280px;
+  margin: 0 auto;
   padding: 2rem;
   text-align: center;
+  margin-top: 80px; /* TODO adjust based on the navbar's height */
 }
