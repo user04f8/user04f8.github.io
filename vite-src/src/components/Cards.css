@@ -1,4 +1,4 @@
-/* Main container for the cards */
+
 .cards-container {
     display: flex;
     flex-direction: column;
@@ -7,11 +7,11 @@
     background-color: #121212;
     min-height: 100vh;
     color: #fff;
-  }
-  
-  @media (min-width: 768px) {
+}
+
+@media (min-width: 768px) {
     .cards-container {
       padding: 60px 100px;
     }
-  }
+}
   

@@ -11,7 +11,6 @@ function Assignments() {
         </p>
         <a href="https://github.com/user04f8/nbclark-assignment-0">Github Link</a>
       </div>
-      {/* Add more assignments as needed */}
     </div>
   );
 }

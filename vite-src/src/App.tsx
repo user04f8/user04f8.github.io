@@ -9,25 +9,22 @@ import AboutMe from './pages/AboutMe';
 // import Contact from './pages/Contact';
 import Assignments from './pages/Assignments';
 
+// App.tsx
 function App() {
   return (
     <Router>
       <Navbar />
-      <Cards />
-      <Routes>
-        <Route path="/" element={<AboutMe />} />
-        {/* <Route path="/work-experience" element={<WorkExperience />} />
-        <Route path="/projects" element={<Projects />} />
-        <Route path="/contact" element={<Contact />} /> */}
-        <Route path="/assignments" element={<Assignments />} />
-      </Routes>
+      <div className="main-content">
+        <Cards />
+        <Routes>
+          <Route path="/" element={<AboutMe />} />
+          {/* TODO: other routes */}
+          <Route path="/assignments" element={<Assignments />} />
+        </Routes>
+      </div>
     </Router>
   );
-  // return (
-  //   <>
-  //     <Cards />
-  //   </>
-  // )
 }
 
-export default App
+export default App;
+

@@ -1,27 +1,11 @@
+/* App.css */
 #root {
-  max-width: 1280px; /* Keeps the page width constrained to a reasonable size */
+  /* Remove padding and text-align */
+  max-width: 1280px;
   margin: 0 auto;
+}
+
+.main-content {
   padding: 2rem;
   text-align: center;
-}
-
-.card {
-  padding: 2em;
-}
-
-/* Additional layout handling */
-.cards-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 40px 20px;
-  background-color: #121212;
-  min-height: 100vh;
-  color: #fff;
-}
-
-@media (min-width: 768px) {
-  .cards-container {
-    padding: 60px 100px;
-  }
 }

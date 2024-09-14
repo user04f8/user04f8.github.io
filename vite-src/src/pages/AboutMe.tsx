@@ -4,7 +4,10 @@ function AboutMe() {
   return (
     <div className="about-me">
       <h1>About Me</h1>
-      {/* Your content goes here */}
+      I'm a human that likes to code
+        <br/>
+      oh also i do music sometimes
+      {/* TODO */}
     </div>
   );
 }
