@@ -2,6 +2,7 @@ import './App.css'
 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
+import Cards from './components/Cards'
 import AboutMe from './pages/AboutMe';
 // import WorkExperience from './pages/WorkExperience';
 // import Projects from './pages/Projects';
@@ -12,6 +13,7 @@ function App() {
   return (
     <Router>
       <Navbar />
+      <Cards />
       <Routes>
         <Route path="/" element={<AboutMe />} />
         {/* <Route path="/work-experience" element={<WorkExperience />} />
