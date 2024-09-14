@@ -2,26 +2,27 @@ import React from "react";
 import "./Cards.css";
 import ParallaxCard from "./ParallaxCard";
 
-const placeholder = 'https://t4.ftcdn.net/jpg/03/86/32/39/360_F_386323925_zrx6Y3SM4QdkM2ICGpbs9RbEVJFRxIGm.jpg';
+const placeholder_img = 'https://t4.ftcdn.net/jpg/03/86/32/39/360_F_386323925_zrx6Y3SM4QdkM2ICGpbs9RbEVJFRxIGm.jpg';
+const placeholder_txt = 'This is placeholder text, the most ordinary of text. Yet, even here, within the mundane, thoughts drift like leaves on a quiet breeze. The sun, with its fading light, sinks beyond the horizon, as the world carries on—unaware of the fleetingness of time. Conversations weave the same old patterns, while subtle moments slip past unseen. Life tumbles forward, relentless, yet in stillness, we find the quiet pulse of reflection. You read these hidden lines, never meant to be found, a secret tucked away in the crevices of code. All else fades, dissolving into the background, as thought flows freely, unanchored, unremarkable. All things seem both vital and inconsequential, suspended in the delicate balance of awareness. The rhythm of life hums on, indifferent to the fleeting musings that vanish like echoes into the void.'
 
 const cardData = [
   {
     title: "Card 1",
     subheading: "Subheading 1",
-    descriptor: "This is the full description of the first card. When you hover over the card, this text will be revealed.",
-    backgroundImage: placeholder,
+    descriptor: placeholder_txt,
+    backgroundImage: placeholder_img,
   },
   {
     title: "Card 2",
     subheading: "Subheading 2",
-    descriptor: "This is the full description of the second card. Hover to reveal the details.",
-    backgroundImage: placeholder,
+    descriptor: placeholder_txt,
+    backgroundImage: placeholder_img,
   },
   {
     title: "Card 3",
     subheading: "Subheading 3",
-    descriptor: "This is the full description of the third card. Hover to learn more.",
-    backgroundImage: placeholder,
+    descriptor: placeholder_txt,
+    backgroundImage: placeholder_img,
   },
   // Add more cards as needed
 ];

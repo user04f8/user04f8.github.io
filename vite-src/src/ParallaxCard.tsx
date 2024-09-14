@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./ParallaxCard.css";
 
 interface ParallaxCardProps {
@@ -14,14 +14,30 @@ const ParallaxCard: React.FC<ParallaxCardProps> = ({
   descriptor,
   backgroundImage,
 }) => {
-  const [isHovered, setIsHovered] = useState(false);
+  const [scrollAmount, setScrollAmount] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      // Calculate scroll position relative to the top of the viewport
+      const scrollPosition = window.scrollY;
+      setScrollAmount(scrollPosition * 0.5); // Adjust scroll rate
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   return (
     <div
-      className={`parallax-card ${isHovered ? "hovered" : ""}`}
-      style={{ backgroundImage: `url(${backgroundImage})` }}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
+      className="parallax-card"
+      style={{
+        backgroundImage: `url(${backgroundImage})`,
+        // Cast as any to allow CSS custom properties in inline styles
+        "--scroll-amount": `${scrollAmount}px`,
+      } as React.CSSProperties} /* <-- Important fix here */
     >
       <div className="card-content">
         <h2 className="card-title">{title}</h2>
