@@ -1,9 +1,9 @@
-import React from 'react';
 import './WorkExperience.css';
 import { FaBriefcase, FaLaptopCode, FaChartLine } from 'react-icons/fa';
 
 const experienceData = [
-  {
+    // TODO fill in placeholder
+  { 
     icon: <FaBriefcase />,
     title: 'Software Engineer',
     company: 'TechCorp Inc.',

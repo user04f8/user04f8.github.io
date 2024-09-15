@@ -10,6 +10,8 @@ export interface ParallaxCardProps {
   link?: string;
 }
 
+// FIXME: This entire approach is suboptimal and overly complex, maybe completely refactor
+
 const ParallaxCard: React.FC<ParallaxCardProps> = ({
   title,
   subheading,
@@ -43,9 +45,8 @@ const ParallaxCard: React.FC<ParallaxCardProps> = ({
       className="parallax-card"
       ref={cardRef}
       style={{
-        // backgroundImage: `url(${backgroundImage})`,
-        backgroundImage: backgroundImage,
-        backgroundPositionY: `${offsetY}px`,
+        backgroundImage: backgroundImage,  // TODO: ideally this would load webp or png as appropriate
+        backgroundPositionY: `${offsetY}px`,  // FIXME: this is set to an initial value that differs from the first scroll
       }}
       onClick={() => link === undefined ? {} : open(link)}
     >

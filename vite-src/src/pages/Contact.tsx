@@ -1,4 +1,3 @@
-import React from 'react';
 import './Contact.css';
 import { FaEnvelope, FaGithub, FaLinkedin } from 'react-icons/fa';
 

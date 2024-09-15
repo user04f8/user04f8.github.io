@@ -5,12 +5,31 @@ function Navbar() {
   return (
     <nav className="navbar">
       <ul>
-        {/* ignore warnings for now (TODO FIXME) */}
-        <li><NavLink exact to="/" activeClassName="active">About Me</NavLink></li>
-        <li><NavLink to="/work-experience" activeClassName="active">Work Experience</NavLink></li>
-        <li><NavLink to="/projects" activeClassName="active">Projects</NavLink></li>
-        <li><NavLink to="/contact" activeClassName="active">Contact</NavLink></li>
-        <li><NavLink to="/assignments" activeClassName="active">Assignments</NavLink></li>
+        <li>
+          <NavLink to="/" className={({ isActive }) => (isActive ? 'active' : '')}>
+            About Me
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="/work-experience" className={({ isActive }) => (isActive ? 'active' : '')}>
+            Work Experience
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="/projects" className={({ isActive }) => (isActive ? 'active' : '')}>
+            Projects
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="/contact" className={({ isActive }) => (isActive ? 'active' : '')}>
+            Contact
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="/assignments" className={({ isActive }) => (isActive ? 'active' : '')}>
+            Assignments
+          </NavLink>
+        </li>
       </ul>
     </nav>
   );
