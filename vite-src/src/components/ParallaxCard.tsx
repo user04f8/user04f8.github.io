@@ -2,12 +2,12 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./ParallaxCard.css";
 
-interface ParallaxCardProps {
+export interface ParallaxCardProps {
   title: string;
   subheading: string;
   descriptor: string;
   backgroundImage: string;
-  link: string | undefined;
+  link?: string;
 }
 
 const ParallaxCard: React.FC<ParallaxCardProps> = ({
@@ -24,8 +24,8 @@ const ParallaxCard: React.FC<ParallaxCardProps> = ({
     const handleScroll = () => {
       if (cardRef.current) {
         const rect = cardRef.current.getBoundingClientRect();
-        const scrollPosition = window.pageYOffset;
-        const cardOffsetTop = rect.top + scrollPosition - 1000;
+        const scrollPosition = window.scrollY;
+        const cardOffsetTop = rect.top + scrollPosition - 100;
         const parallaxSpeed = 0.2;
         const yPos = -(scrollPosition - cardOffsetTop) * parallaxSpeed;
         setOffsetY(yPos);
@@ -43,7 +43,8 @@ const ParallaxCard: React.FC<ParallaxCardProps> = ({
       className="parallax-card"
       ref={cardRef}
       style={{
-        backgroundImage: `url(${backgroundImage})`,
+        // backgroundImage: `url(${backgroundImage})`,
+        backgroundImage: backgroundImage,
         backgroundPositionY: `${offsetY}px`,
       }}
       onClick={() => link === undefined ? {} : open(link)}

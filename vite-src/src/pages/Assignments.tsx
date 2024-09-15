@@ -1,15 +1,23 @@
 import './Assignments.css'
 
 function Assignments() {
+  const latest_assign = 0;
+
   return (
     <div className="assignments">
-      <h1>Assignments</h1>
+      <h1>CS506 Assignments</h1>
       <div className="assignment">
-        <h2>Assignment 0</h2>
-        <p>
-          Dummy assignment per reqs
-        </p>
-        <a href="https://github.com/user04f8/nbclark-assignment-0">Github Link</a>
+        
+        {
+        Array.from({ length: latest_assign + 1 }, (_, i) => (
+            <>
+                <h2>Assignment {i}</h2>
+                <a key={i} href={`https://github.com/user04f8-cs506/nbclark-assignment-${i}`}>
+                    Github Link
+                </a>
+            </>
+        ))
+        }
       </div>
     </div>
   );

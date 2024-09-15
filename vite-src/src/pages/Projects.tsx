@@ -1,14 +1,17 @@
 // pages/Projects.tsx
 import React from 'react';
 import './Projects.css';
-import ParallaxCard from '../components/ParallaxCard';
+import Cards from '../components/Cards'
+import { ParallaxCardProps } from '../components/ParallaxCard';
 
-const projectsData = [
+import RPS_Splash from '../assets/rps_splash.webp'
+
+const projectsData: Array<ParallaxCardProps> = [
   {
     title: 'Rock Paper Infinity',
     subheading: '',
     descriptor: '',
-    backgroundImage: 'assets/react.svg',
+    backgroundImage: RPS_Splash,
     link: 'https://rockpaperinfinity.com/'
   },
   {
@@ -17,25 +20,16 @@ const projectsData = [
     descriptor: 'A brief description of Project Beta.',
     backgroundImage: 'path_to_image_beta.jpg',
   },
-  // Add more projects as needed
+  // TODO: add more projects
 ];
 
 function Projects() {
   return (
     <div className="projects-page">
-      <h1>My Projects</h1>
-      <div className="projects-container">
-        {projectsData.map((project, index) => (
-          <ParallaxCard
-            key={index}
-            title={project.title}
-            subheading={project.subheading}
-            descriptor={project.descriptor}
-            backgroundImage={project.backgroundImage}
-            link={project?.link}
-          />
-        ))}
-      </div>
+      {/* <h1>Projects</h1> */}
+      {/* <div className="projects-container"> */}
+        <Cards cardData={projectsData} />
+      {/* </div> */}
     </div>
   );
 }

@@ -1,0 +1,33 @@
+/* Contact.css */
+.contact-page {
+    text-align: center;
+    padding: 50px 20px;
+  }
+  
+  .contact-page h1 {
+    font-size: 2.5em;
+    margin-bottom: 30px;
+  }
+  
+  .contact-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .contact-info a {
+    color: #aaa;
+    text-decoration: none;
+    font-size: 1.5em;
+    margin: 10px 0;
+    transition: color 0.3s;
+  }
+  
+  .contact-info a:hover {
+    color: #0073b1; /* LinkedIn blue */
+  }
+  
+  .contact-info svg {
+    margin-right: 10px;
+  }
+  
