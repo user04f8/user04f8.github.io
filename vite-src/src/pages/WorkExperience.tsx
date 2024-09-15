@@ -1,4 +1,3 @@
-// pages/WorkExperience.tsx
 import React from 'react';
 import './WorkExperience.css';
 import { FaBriefcase, FaLaptopCode, FaChartLine } from 'react-icons/fa';

@@ -1,4 +1,3 @@
-// pages/Projects.tsx
 import React from 'react';
 import './Projects.css';
 import Cards from '../components/Cards'
@@ -11,7 +10,7 @@ const projectsData: Array<ParallaxCardProps> = [
     title: 'Rock Paper Infinity',
     subheading: '',
     descriptor: '',
-    backgroundImage: RPS_Splash,
+    backgroundImage: `url(${RPS_Splash})`,
     link: 'https://rockpaperinfinity.com/'
   },
   {
