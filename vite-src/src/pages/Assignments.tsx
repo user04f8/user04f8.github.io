@@ -1,5 +1,5 @@
 function Assignments() {
-    const latestAssignment = 0;
+    const latestAssignment = 1;
     const assignments = Array.from({ length: latestAssignment + 1 }, (_, i) => i);
   
     return (
