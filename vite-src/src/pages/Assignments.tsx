@@ -9,7 +9,7 @@ function Assignments() {
           {assignments.map((num) => (
             <div key={num}>
               <h2 className="text-2xl font-semibold">Assignment {num}</h2>
-              <p className="mt-2">This is the dummy assignment as a test.</p>
+              <p className="mt-2"></p>
               <a
                 href={`https://github.com/user04f8-cs506/nbclark-assignment-${num}`}
                 className="text-blue-500 underline"
