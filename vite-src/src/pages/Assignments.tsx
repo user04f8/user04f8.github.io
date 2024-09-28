@@ -1,9 +1,16 @@
+import KMeansApp from "../external/assignment-2/src/KMeansApp";
+
 function Assignments() {
-    const latestAssignment = 1;
+    const latestAssignment = 2;
     const assignments = Array.from({ length: latestAssignment + 1 }, (_, i) => i);
     const assignment_descriptors = [
-      "This is a simple assignment used as a test.",
-      "This is the assignment on data colection and analysis."
+      <>
+      This is a simple assignment used as a test.
+      </>,
+      <>
+      This is the assignment on data colection and analysis.
+      </>,
+      <KMeansApp/>
     ]
   
     return (
