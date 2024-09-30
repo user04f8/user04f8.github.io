@@ -1,7 +1,7 @@
 import KMeansApp from "../external/assignment-2/src/KMeansApp";
 
 function Assignments() {
-    const latestAssignment = 2;
+    const latestAssignment = 3;
     const assignments = Array.from({ length: latestAssignment + 1 }, (_, i) => i);
     const assignment_descriptors = [
       <>
@@ -10,7 +10,12 @@ function Assignments() {
       <>
       This is the assignment on data colection and analysis.
       </>,
-      <KMeansApp/>
+      <KMeansApp/>,
+      <>
+      This is the completed analysis of SVD on MNIST
+
+      (TODO: make public on 10/7)
+      </>
     ]
   
     return (
