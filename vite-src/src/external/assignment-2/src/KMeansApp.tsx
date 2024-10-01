@@ -201,7 +201,7 @@ const KMeansApp: React.FC = () => {
           setDistribution={setDistribution}
         />
         <div className="text-center mb-4">
-          <p className="text-lg font-semibold">Iteration: {iteration}</p>
+          <p className="text-lg font-semibold text-white">Iteration: {iteration}</p>
         </div>
         <Visualization
           points={points}
