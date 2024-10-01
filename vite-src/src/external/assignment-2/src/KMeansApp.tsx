@@ -1,3 +1,4 @@
+// src/KMeansApp.tsx
 import React, { useState, useEffect, useRef } from 'react';
 import { Point, Centroid } from './types';
 import { KMeans, InitializationMethod } from './kmeans';
@@ -6,27 +7,16 @@ import Visualization from './components/Visualization';
 import Legend from './components/Legend';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import './KmeansApp.css'
+import './KMeansApp.css';
 
 const KMeansApp: React.FC = () => {
   const [points, setPoints] = useState<Point[]>([]);
   const [kmeans, setKMeans] = useState<KMeans | null>(null);
-  const [initializationMethod, setInitializationMethod] = useState<InitializationMethod>(InitializationMethod.Random);
+  const [initializationMethod, setInitializationMethod] = useState<InitializationMethod>(
+    InitializationMethod.Random
+  );
   const [k, setK] = useState<number>(3);
-  const [manualCentroids, setManualCentroids] = useState<Centroid[]>([
-    {
-      x: .13,
-      y: .87
-    },
-    {
-      x: .5,
-      y: .13
-    },
-    {
-      x: .87,
-      y: .87
-    }
-  ]);
+  const [manualCentroids, setManualCentroids] = useState<Centroid[]>([]);
   const [centroids, setCentroids] = useState<Centroid[]>([]);
   const [iteration, setIteration] = useState(0);
   const [converged, setConverged] = useState(false);
@@ -35,67 +25,58 @@ const KMeansApp: React.FC = () => {
   const [numPoints, setNumPoints] = useState<number>(200);
   const [distribution, setDistribution] = useState<string>('uniform');
 
-  const intervalRef = useRef<number | null>(null); // Use number instead of NodeJS.Timeout
+  const intervalRef = useRef<number | null>(null);
 
-  // Initialize the dataset on mount
+  // Initialize the dataset and KMeans on component mount
   useEffect(() => {
     handleNewDataset();
-    credits();
   }, []);
 
-  // Function to initialize KMeans
-  const initializeKMeans = () => {
-    if (initializationMethod === InitializationMethod.Manual) {
+  const initializeKMeans = (currentPoints: Point[]) => {
+    if (initializationMethod === InitializationMethod.Manual) return;
+
+    if (k <= 0) {
+      toast.error('Number of clusters (k) must be at least 1.');
+      return;
+    }
+    const km = new KMeans(k, currentPoints, initializationMethod);
+    km.initializeCentroids();
+    setKMeans(km);
+    setIteration(0);
+    setConverged(false);
+    setCentroids([...km.getCentroids()]);
+  };
+
+  const handleInitializationMethodChange = (method: InitializationMethod) => {
+    setInitializationMethod(method);
+    if (method !== InitializationMethod.Manual && k === 0) {
+      setK(3);
+    } else if (method === InitializationMethod.Manual) {
       setK(0);
       setManualCentroids([]);
       setCentroids([]);
       setKMeans(null);
-    } else {
-      if (k <= 0) {
-        toast.error('Number of clusters (k) must be at least 1.');
-        return;
-      }
-      const km = new KMeans(k, points, initializationMethod);
-      km.initializeCentroids();
-      setKMeans(km);
-      setIteration(0);
-      setConverged(false);
-      setCentroids([...km.getCentroids()]);
     }
   };
 
-  // Handle changes to the initialization method
-  const handleInitializationMethodChange = (method: InitializationMethod) => {
-    setInitializationMethod(method);
-    if (method !== InitializationMethod.Manual && k === 0) {
-      setK(3); // Reset k to a default value if it's 0
-    }
-  };
-
-  // Reinitialize KMeans when the initialization method changes
+  // Reinitialize KMeans when the initialization method or k changes
   useEffect(() => {
-    initializeKMeans();
-  }, [initializationMethod]);
-
-  // Reinitialize KMeans when k changes (if not in manual mode)
-  useEffect(() => {
-    if (initializationMethod !== InitializationMethod.Manual) {
-      initializeKMeans();
-    }
-  }, [k]);
+    if (points.length === 0) return;
+    initializeKMeans(points);
+  }, [initializationMethod, k]);
 
   const handleNewDataset = () => {
     const newPoints = generateRandomPoints(numPoints, distribution);
     setPoints(newPoints);
-    initializeKMeans();
+    initializeKMeans(newPoints);
     setIteration(0);
-    toast.info('New dataset generated. Hit Reset to reinitialize KMeans.');
+    toast.info('New dataset generated. KMeans reinitialized.');
   };
 
   const handleStep = () => {
     if (kmeans && !converged) {
       const hasConverged = kmeans.iterate();
-      setIteration(prev => prev + 1);
+      setIteration((prev) => prev + 1);
       setPoints([...kmeans.getPoints()]);
       setCentroids([...kmeans.getCentroids()]);
       if (hasConverged) {
@@ -104,6 +85,8 @@ const KMeansApp: React.FC = () => {
       }
     } else if (converged) {
       toast.info('KMeans has already converged.');
+    } else {
+      toast.error('Please generate a dataset first.');
     }
   };
 
@@ -123,20 +106,25 @@ const KMeansApp: React.FC = () => {
       if (!hasConverged) {
         toast.info('Maximum iterations reached without convergence.');
       }
-      setIteration(prev => prev + iterations);
+      setIteration((prev) => prev + iterations);
       setPoints([...kmeans.getPoints()]);
       setCentroids([...kmeans.getCentroids()]);
     } else if (converged) {
       toast.info('KMeans has already converged.');
+    } else {
+      toast.error('Please generate a dataset first.');
     }
   };
 
   const handlePlay = () => {
-    if (!kmeans || converged) return;
+    if (!kmeans || converged) {
+      toast.error('Please generate a dataset first.');
+      return;
+    }
     setIsPlaying(true);
     intervalRef.current = window.setInterval(() => {
       const hasConverged = kmeans.iterate();
-      setIteration(prev => prev + 1);
+      setIteration((prev) => prev + 1);
       setPoints([...kmeans.getPoints()]);
       setCentroids([...kmeans.getCentroids()]);
       if (hasConverged) {
@@ -161,13 +149,20 @@ const KMeansApp: React.FC = () => {
       intervalRef.current = null;
     }
     setIsPlaying(false);
-    setKMeans(null);
-    setManualCentroids([]);
-    setCentroids([]);
-    setIteration(0);
     setConverged(false);
-    setPoints(points.map(point => ({ x: point.x, y: point.y }))); // Reset clusters
-    initializeKMeans();
+    setIteration(0);
+
+    const resetPoints = points.map((point) => ({ x: point.x, y: point.y }));
+    setPoints(resetPoints);
+
+    if (initializationMethod === InitializationMethod.Manual) {
+      setKMeans(null);
+      setManualCentroids([]);
+      setCentroids([]);
+    } else {
+      initializeKMeans(resetPoints);
+    }
+
     toast.info('Algorithm reset.');
   };
 
@@ -184,8 +179,9 @@ const KMeansApp: React.FC = () => {
   };
 
   return (
+    <div className="kmeans-app min-h-screen bg-gray-900 p-4">
       <div className="container mx-auto text-black">
-        <h1 className="text-4xl font-bold text-center mb-6 text-gray-200">KMeans Clustering Visualization</h1>
+        <h1 className="text-4xl font-bold text-center mb-6 text-white">KMeans Clustering Visualization</h1>
         <ControlPanel
           initializationMethod={initializationMethod}
           onInitializationMethodChange={handleInitializationMethodChange}
@@ -205,7 +201,7 @@ const KMeansApp: React.FC = () => {
           setDistribution={setDistribution}
         />
         <div className="text-center mb-4">
-          <p className="text-lg font-semibold text-gray-200">Iteration: {iteration}</p>
+          <p className="text-lg font-semibold">Iteration: {iteration}</p>
         </div>
         <Visualization
           points={points}
@@ -216,12 +212,9 @@ const KMeansApp: React.FC = () => {
         {kmeans && <Legend k={centroids.length} />}
         <ToastContainer position="top-right" autoClose={3000} hideProgressBar={false} />
       </div>
+    </div>
   );
 };
-
-function credits() {
-  console.log("Created by Nathan Clark");
-}
 
 function generateRandomPoints(numPoints: number, distribution: string): Point[] {
   const points: Point[] = [];
@@ -254,7 +247,7 @@ function generateRandomPoints(numPoints: number, distribution: string): Point[] 
 function randomGaussian(mean: number, stdDev: number): number {
   let u = 0,
     v = 0;
-  while (u === 0) u = Math.random(); // Converting [0,1) to (0,1)
+  while (u === 0) u = Math.random(); // Converting [0,1) to (0,1]
   while (v === 0) v = Math.random();
   let num = Math.sqrt(-2.0 * Math.log(u)) * Math.cos(2.0 * Math.PI * v);
   num = num * stdDev + mean;
