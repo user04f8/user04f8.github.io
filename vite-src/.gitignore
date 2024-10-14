@@ -24,4 +24,5 @@ dist-ssr
 *.sw?
 
 # External yet unreleased assignment data
-# external
+external
+!external/assignment-2
