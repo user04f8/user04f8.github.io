@@ -1,4 +1,5 @@
 import KMeansApp from "../external/assignment-2/src/KMeansApp";
+import LSAApp from "../external/assignment-4/App"
 
 function Assignments() {
     const latestAssignment = 4;
@@ -14,7 +15,7 @@ function Assignments() {
       <>
       This is the completed analysis of SVD on MNIST
       </>,
-      <></>
+      <LSAApp />
     ]
   
     return (
