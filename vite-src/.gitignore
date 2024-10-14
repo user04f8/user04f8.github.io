@@ -26,3 +26,6 @@ dist-ssr
 # External yet unreleased assignment data
 external
 !external/assignment-2
+
+# Assign 4
+public/chunks
