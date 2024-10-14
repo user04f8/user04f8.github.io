@@ -25,8 +25,8 @@ function Navbar() {
           </NavLink>
         </li>
         <li>
-          <NavLink to="/assignments" className="text-white hover:text-gray-400">
-            Assignments
+          <NavLink to="/mini-projects" className="text-white hover:text-gray-400">
+            Mini-Projects
           </NavLink>
         </li>
       </ul>
