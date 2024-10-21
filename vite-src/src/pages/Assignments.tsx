@@ -2,7 +2,7 @@ import KMeansApp from "../external/assignment-2/src/KMeansApp";
 import LSAApp from "../external/assignment-4/App"
 
 function Assignments() {
-    const latestAssignment = 4;
+    const latestAssignment = 5;
     const assignments = Array.from({ length: latestAssignment + 1 }, (_, i) => i);
     const assignment_descriptors = [
       <>
@@ -15,12 +15,15 @@ function Assignments() {
       <>
       This is the completed analysis of SVD on MNIST
       </>,
-      <LSAApp />
+      <LSAApp />,
+      <>
+      This is the submission to this <a href="https://www.kaggle.com/competitions/cs-506-predicting-customer-churn-using-knn/leaderboard">Kaggle competition</a>
+      </>
     ]
   
     return (
       <div className="mt-20 p-6 text-white">
-        <h1 className="text-4xl font-bold mb-6 text-center">CS506 Assignments</h1>
+        <h1 className="text-4xl font-bold mb-6 text-center">Weekly mini-projects</h1>
         <div className="space-y-8">
           {assignments.map((num) => (
             <div key={num}>
