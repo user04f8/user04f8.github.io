@@ -23,6 +23,17 @@ function Assignments() {
   
     return (
       <div className="mt-20 p-6 text-white">
+        <h1 className="text-2xl font-semibold">Fuzzy n-grams & matrix factorization: towards improved recommender systems</h1>
+        <div className="space-y-8">
+          <p className="mt-2">This was the winning submission to a kaggle competition on recommender systems, developing a unique approach to generalizing n-grams via the embedding similarity metric.</p>
+          <a
+              href={`https://github.com/user04f8/genetic-nlp`}
+              className="text-blue-500 underline"
+            >
+              Github Link
+            </a>
+        </div>
+        <div className="my-8 border-t border-gray-500 opacity-50"></div>
         <h1 className="text-4xl font-bold mb-6 text-center">Weekly mini-projects</h1>
         <div className="space-y-8">
           {assignments.map((num) => (
