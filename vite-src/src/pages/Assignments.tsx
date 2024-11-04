@@ -1,8 +1,9 @@
 import KMeansApp from "../external/assignment-2/src/KMeansApp";
 import LSAApp from "../external/assignment-4/App"
+import LinearRegressionAssumptions from "../external/LinearRegressionAssumptions";
 
 function Assignments() {
-    const latestAssignment = 5;
+    const latestAssignment = 6;
     const assignments = Array.from({ length: latestAssignment + 1 }, (_, i) => i);
     const assignment_descriptors = [
       <>
@@ -18,7 +19,8 @@ function Assignments() {
       <LSAApp />,
       <>
       This is the submission to this <a href="https://www.kaggle.com/competitions/cs-506-predicting-customer-churn-using-knn/leaderboard">Kaggle competition</a>
-      </>
+      </>,
+      <LinearRegressionAssumptions/>
     ]
   
     return (
