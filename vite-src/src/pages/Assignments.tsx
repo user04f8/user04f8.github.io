@@ -1,9 +1,10 @@
 import KMeansApp from "../external/assignment-2/src/KMeansApp";
 import LSAApp from "../external/assignment-4/App"
 import LinearRegressionAssumptions from "../external/LinearRegressionAssumptions";
+import LogisticRegressionExperiment from "../external/LogisticRegressionExperiment";
 
 function Assignments() {
-    const latestAssignment = 7;
+    const latestAssignment = 8;
     const assignments = Array.from({ length: latestAssignment + 1 }, (_, i) => i);
     const assignment_descriptors = [
       <>
@@ -18,12 +19,13 @@ function Assignments() {
       </>,
       <LSAApp />,
       <>
-      This is the submission to this <a href="https://www.kaggle.com/competitions/cs-506-predicting-customer-churn-using-knn/leaderboard">Kaggle competition</a>
+      This is the submission to this <a href="https://www.kaggle.com/competitions/cs-506-predicting-customer-churn-using-knn/leaderboard" className="text-blue-500 underline">Kaggle competition</a>
       </>,
       <LinearRegressionAssumptions/>,
       <>
-      (see README.md for the video demo)
+      Find the <a href="https://youtu.be/BUGsAUDCy0Y" className="text-blue-500 underline">video demo here</a> for this linear regressions tool.
       </>,
+      <LogisticRegressionExperiment />
     ]
   
     return (
