@@ -24,10 +24,7 @@ dist-ssr
 *.sw?
 
 # External yet unreleased assignment data
-external
-!external/assignment-2
-!external/assignment-4
-!external/LinearRegressionAssumptions.tsx
+external/NeuralNetworkVisualization.tsx
 
 # Assign 4
 public/chunks

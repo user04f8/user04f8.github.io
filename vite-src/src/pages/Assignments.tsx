@@ -2,9 +2,10 @@ import KMeansApp from "../external/assignment-2/src/KMeansApp";
 import LSAApp from "../external/assignment-4/App"
 import LinearRegressionAssumptions from "../external/LinearRegressionAssumptions";
 import LogisticRegressionExperiment from "../external/LogisticRegressionExperiment";
+import NeuralNetworkVisualization from "../external/NeuralNetworkVisualization";
 
 function Assignments() {
-    const latestAssignment = 8;
+    const latestAssignment = 9;
     const assignments = Array.from({ length: latestAssignment + 1 }, (_, i) => i);
     const assignment_descriptors = [
       <>
@@ -25,7 +26,8 @@ function Assignments() {
       <>
       Find the <a href="https://youtu.be/BUGsAUDCy0Y" className="text-blue-500 underline">video demo here</a> for this linear regressions tool.
       </>,
-      <LogisticRegressionExperiment />
+      <LogisticRegressionExperiment />,
+      <NeuralNetworkVisualization />
     ]
   
     return (
