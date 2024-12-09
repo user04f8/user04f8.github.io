@@ -59,7 +59,7 @@ function Assignments() {
           ))}
         </div>
         <div className="my-8 border-t border-gray-500 opacity-50"></div>
-        <h1 className="text-2xl font-semibold">Extra Credit: Identifying Credit Card Fraud</h1>
+        <h1 className="text-2xl font-semibold">Identifying Credit Card Fraud</h1>
         <div className="space-y-8">
           <a
               href={`https://github.com/user04f8-cs506/nbclark-bonus`}
